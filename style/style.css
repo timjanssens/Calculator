@@ -18,8 +18,8 @@ body{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-areas: 
-    '_textUp _textUp _textUp _textUp'
-    '_textDown _textDown _textDown _textDown'
+    'textDiv textDiv textDiv textDiv'
+    'textDiv textDiv textDiv textDiv'
     '_ac _c _changeSymbol _divide'
     '_7 _8 _9 _multiply'
     '_4 _5 _6 _minus'
@@ -27,11 +27,13 @@ body{
     '_point _0 _equal _equal' ;
     place-items: center;
     grid-gap: 1px px;
-    border: black 5px solid
+    border: black 8px solid;
+    background-color: black;
+    border-radius: 1rem;
 }
 
 
-
+#textDiv{grid-area: textDiv;}
 #textUp{grid-area: _textUp;}
 #textDown{grid-area: _textDown;}
 #ac{grid-area: _ac;}
@@ -59,20 +61,30 @@ body{
     height: 100%;
     background-color:#54919f; 
     text-align: center;
-    padding: 20px;
-    border: black solid 1px
+    padding: 15px;
+    border: black solid 5px;
+    border-radius: 25%;
 }
 
-#calculator .alignRight{
+
+
+#calculator #textDown{
+    height: 40px;
+
+}
+
+#calculator #textUp{
+    height: 45px;
+} 
+
+#calculator #textDiv{
     text-align: right;
     background-color: #26393e;
     color: white;
-    border-top-color: #26393e;
-    border-bottom-color: #26393e;
-    padding: 10px 20px;
+    border: 5px solid black;
+    border-radius: 1rem;
 }
 
-#calculator .outputDown{
-    border-bottom: 5px solid black;
-    padding-top: 0px;
+#calculator #equal{
+    border-radius: 1rem;
 }
