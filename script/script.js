@@ -7,11 +7,14 @@
 const textUpEl = document.querySelector('#textUp');
 const textDownEl = document.querySelector('#textDown')
 let outputUp;
-let outputDown; 
+let outputDown;
 let number1 = '';
 let number2 = '';
+let keyNotNumber = '';
 let number1ForCalc = '';
 let firstNum = true;
+let result = '';
+
 
 const sum = (num1, num2) => num1 + num2;
 const subtract = (num1, num2) => num1 - num2;
@@ -38,27 +41,60 @@ const operate = (num1, num2, operator) => {
 }
 
 const clickBtn = (e) => {
-    if (!isNaN(e.srcElement.id) && firstNum) {
+    if (!isNaN(e.srcElement.id) && firstNum || e.srcElement.id == '.') {
         number1 += e.srcElement.id;
         outputDown = number1;
         textDownEl.textContent = outputDown;
-    }
-    else if (!isNaN(e.srcElement.id) && !firstNum) {
+    } else if (!isNaN(e.srcElement.id) && !firstNum) {
         number2 += e.srcElement.id;
         outputDown = number2;
         textDownEl.textContent = outputDown;
-    }
-    else{
+    } else {
         textUpEl.textContent = number1;
         textDownEl.textContent = '';
+        keyNotNumber = e.srcElement.id;
+        console.log(keyNotNumber);
         number1ForCalc = number1;
         number1 = '';
-        
+        result = (number1ForCalc, number2, keyNotNumber) => {
+            switch (keynotNumber) {
+                case 'ac':
+
+                    break;
+                case 'a':
+
+                    break;
+                case 'ChangeSymbol':
+
+                    break;
+                case 'divide':
+
+                    break;
+                case 'multiply':
+
+                    break;
+                case 'minus':
+
+                    break;
+                case 'sum':
+                 operate(number1ForCalc, number2, '+')
+                    break;
+                case 'equal':
+
+                    break;
+
+
+                default:
+                    break;
+            }
+        }
+        textDownEl.textContent = result;
     }
 
 };
 
 let inputBtn = document.querySelectorAll('.inputBtn');
+
 
 inputBtn.forEach(() => {
     addEventListener('click', clickBtn);
