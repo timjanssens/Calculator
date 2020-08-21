@@ -11,7 +11,7 @@ let outputDown;
 let number1 = '';
 let number2 = '';
 let keyNotNumber = '';
-let number1ForCalc = '';
+//let number1ForCalc = '';
 let firstNum = true;
 let result = '';
 
@@ -24,71 +24,144 @@ const divide = (num1, num2) => num1 / num2;
 const operate = (num1, num2, operator) => {
     switch (operator) {
         case '+':
-            return sum(num1, num2);
+            return sum(+num1, +num2);
             break;
         case '-':
-            return subtract(num1, num2);
+            return subtract(+num1, +num2);
             break;
         case '*':
-            return multiply(num1, num2);
+            return multiply(+num1, +num2);
             break;
         case '/':
-            return divide(num1, num2);
+            return divide(+num1, +num2);
             break;
         default:
             break;
     }
 }
 
+const operator = (keyNotNumber) => {
+    while (keyNotNumber) {
+
+    }
+}
+
+const calculate = function (number1ForCalc, number2, keyNotNumber) {
+    switch (keyNotNumber) {
+        case 'ac':
+
+            break;
+        case 'a':
+
+            break;
+        case 'ChangeSymbol':
+
+            break;
+        case 'divide':
+            return operate(number1ForCalc, number2, '/')
+            break;
+        case 'multiply':
+            return operate(number1ForCalc, number2, '*')
+            break;
+        case 'minus':
+            return operate(number1ForCalc, number2, '-')
+            break;
+        case 'sum':
+            return operate(number1ForCalc, number2, '+')
+            break;
+        case 'equal':
+
+            break;
+
+
+        default:
+            break;
+    }
+}
+
+const reset = () => {
+    textUpEl.textContent = '';
+    number1 = '';
+    number2 = ''
+    firstNum = true;
+}
+
+const returnSymbol = (idEl) => {
+    switch (idEl) {
+        case 'sum':
+            return ' + ';
+            break;
+        case 'minus':
+            return ' - ';
+            break;
+        case 'multiply':
+            return ' x ';
+            break;
+        case 'divide':
+            return ' : ';
+            break;
+
+        default:
+            break;
+    }
+}
+
 const clickBtn = (e) => {
-    if (!isNaN(e.srcElement.id) && firstNum || e.srcElement.id == '.') {
+    if (!isNaN(e.srcElement.id) && firstNum || (e.srcElement.id == '.')) {
         number1 += e.srcElement.id;
-        outputDown = number1;
-        textDownEl.textContent = outputDown;
-    } else if (!isNaN(e.srcElement.id) && !firstNum) {
+        console.log('een');
+        console.log(number1);
+        textDownEl.textContent = number1;
+    } else if (!isNaN(e.srcElement.id) || (e.srcElement.id == '.')) {
+        textUpEl.textContent = `${number1} ${returnSymbol(keyNotNumber)}`;
         number2 += e.srcElement.id;
-        outputDown = number2;
-        textDownEl.textContent = outputDown;
-    } else {
-        textUpEl.textContent = number1;
-        textDownEl.textContent = '';
-        keyNotNumber = e.srcElement.id;
-        console.log(keyNotNumber);
-        number1ForCalc = number1;
-        number1 = '';
-        result = (number1ForCalc, number2, keyNotNumber) => {
-            switch (keynotNumber) {
-                case 'ac':
-
-                    break;
-                case 'a':
-
-                    break;
-                case 'ChangeSymbol':
-
-                    break;
-                case 'divide':
-
-                    break;
-                case 'multiply':
-
-                    break;
-                case 'minus':
-
-                    break;
-                case 'sum':
-                 operate(number1ForCalc, number2, '+')
-                    break;
-                case 'equal':
-
-                    break;
-
-
-                default:
-                    break;
-            }
-        }
+        console.log('twee');
+        console.log(number2);
+        textDownEl.textContent = number2;
+    } else if (e.srcElement.id == 'equal') {
+        result = calculate(number1, number2, keyNotNumber);
         textDownEl.textContent = result;
+        if (textDownEl.textContent == 'Infinity'){
+        textUpEl.textContent = 'You cant divide';
+        textDownEl.textContent = 'by 0';
+        }
+        reset();
+    } else if (e.srcElement.id == 'ac') {
+        textDownEl.textContent = '';
+        reset();
+    }     else if (e.srcElement.id == 'c'){
+        if (number2 != '') {
+            number2 = (number2).toString().slice(0,-1);
+            textDownEl.textContent = number2;
+        } else if (textUpEl.innerHTML == ''){
+            number1 = (number1).toString().slice(0,-1);
+            textDownEl.textContent = number1;
+        }
+    } else if (e.srcElement.id == 'changeSymbol'){
+        if (number2 != '') {
+            number2 = Math.abs(number2) * -1;
+            textDownEl.textContent = number2;
+        } else if (textUpEl.innerHTML == ''){
+            number1 = Math.abs(number1) * -1;
+            textDownEl.textContent = number1;
+        }
+    }
+    else if (isNaN(e.srcElement.id) && firstNum && number1 != '') {
+        keyNotNumber = e.srcElement.id;
+        textUpEl.textContent = `${number1} ${returnSymbol(keyNotNumber)}`;
+        textDownEl.textContent = '';
+        console.log('drie');
+        firstNum = false;
+    } else if (isNaN(e.srcElement.id) && !firstNum && number1 != '') {
+        result = calculate(number1, number2, keyNotNumber);
+        keyNotNumber = e.srcElement.id;
+        number1 = result;
+        console.log('vier');
+        console.log(keyNotNumber);
+        console.log(result);
+        number2 = '';
+        textUpEl.textContent = `${result} ${returnSymbol(keyNotNumber)}`;
+        textDownEl.textContent = '';
     }
 
 };
@@ -99,3 +172,101 @@ let inputBtn = document.querySelectorAll('.inputBtn');
 inputBtn.forEach(() => {
     addEventListener('click', clickBtn);
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// FOUTE OUDE CODE
+// if (!isNaN(e.srcElement.id) && firstNum) {       
+//     number1 += e.srcElement.id;
+//     outputDown = number1;
+//     console.log('eerste')
+//     textDownEl.textContent = outputDown;
+// } else if (!isNaN(e.srcElement.id) && number2 == '') {
+// number2 = e.srcElement.id;
+// outputDown = number2;
+// console.log('tweede' + number2)
+// textDownEl.textContent = outputDown;
+
+// } else if (!isNaN(e.srcElement.id) && number2 != '') {
+// if (number2 != 0) {        
+//     let add = textUpEl.textContent;    
+//     number2 += e.srcElement.id;        
+//     console.log('VIJFDE' + number2)
+//     textDownEl.textContent = +number2;
+// }
+// else{
+//     number2 += textDownEl.textContent;
+//     console.log('Zesde' + number2)
+//     textDownEl.textContent = +number2;
+
+// }
+// } else if (number2 != '') {
+// textUpEl.textContent = number1;
+// textDownEl.textContent = '';
+// keyNotNumber = e.srcElement.id;
+// console.log(keyNotNumber);
+// console.log(number1ForCalc);
+// console.log(number2);
+// result = calculate(number1ForCalc, number2, keyNotNumber);
+// number1ForCalc = number1;
+// number2 = 0;
+// number1 = result;
+// textUpEl.textContent = result;
+// } else {
+// textUpEl.textContent = `${number1}`;
+// textDownEl.textContent = '';
+// keyNotNumber = e.srcElement.id;
+// console.log('vierde');
+// number1ForCalc = number1;
+// number1 = '';
+
+// firstNum = false
+// }
