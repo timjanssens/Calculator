@@ -1,8 +1,4 @@
-//functions
 
-// function add(num1, num2){
-//     return num1 + num2;
-// }
 
 const textUpEl = document.querySelector('#textUp');
 const textDownEl = document.querySelector('#textDown')
@@ -11,10 +7,11 @@ let outputDown;
 let number1 = '';
 let number2 = '';
 let keyNotNumber = '';
-//let number1ForCalc = '';
 let firstNum = true;
 let result = '';
 
+
+// functions
 
 const sum = (num1, num2) => num1 + num2;
 const subtract = (num1, num2) => num1 - num2;
@@ -166,107 +163,12 @@ const clickBtn = (e) => {
 
 };
 
+
 let inputBtn = document.querySelectorAll('.inputBtn');
 
 
+
+// Eventlisteners
 inputBtn.forEach(() => {
     addEventListener('click', clickBtn);
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// FOUTE OUDE CODE
-// if (!isNaN(e.srcElement.id) && firstNum) {       
-//     number1 += e.srcElement.id;
-//     outputDown = number1;
-//     console.log('eerste')
-//     textDownEl.textContent = outputDown;
-// } else if (!isNaN(e.srcElement.id) && number2 == '') {
-// number2 = e.srcElement.id;
-// outputDown = number2;
-// console.log('tweede' + number2)
-// textDownEl.textContent = outputDown;
-
-// } else if (!isNaN(e.srcElement.id) && number2 != '') {
-// if (number2 != 0) {        
-//     let add = textUpEl.textContent;    
-//     number2 += e.srcElement.id;        
-//     console.log('VIJFDE' + number2)
-//     textDownEl.textContent = +number2;
-// }
-// else{
-//     number2 += textDownEl.textContent;
-//     console.log('Zesde' + number2)
-//     textDownEl.textContent = +number2;
-
-// }
-// } else if (number2 != '') {
-// textUpEl.textContent = number1;
-// textDownEl.textContent = '';
-// keyNotNumber = e.srcElement.id;
-// console.log(keyNotNumber);
-// console.log(number1ForCalc);
-// console.log(number2);
-// result = calculate(number1ForCalc, number2, keyNotNumber);
-// number1ForCalc = number1;
-// number2 = 0;
-// number1 = result;
-// textUpEl.textContent = result;
-// } else {
-// textUpEl.textContent = `${number1}`;
-// textDownEl.textContent = '';
-// keyNotNumber = e.srcElement.id;
-// console.log('vierde');
-// number1ForCalc = number1;
-// number1 = '';
-
-// firstNum = false
-// }

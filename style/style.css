@@ -33,7 +33,7 @@ body{
     border-radius: 1rem;
 }
 
-
+/* name area's for grid template area's */
 #textDiv{grid-area: textDiv;}
 #textUp{grid-area: _textUp;}
 #textDown{grid-area: _textDown;}
